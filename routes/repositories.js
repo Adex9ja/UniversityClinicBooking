@@ -1,10 +1,12 @@
-var pgcon = require('pg');
+var pg = require('pg');
 var path = require('path');
 var session = require('express-session');
-var pg = new pgcon.Pool();
-var sess;
 
 var conString = "postgres://iegknwvdcghvhk:1af24d4dab8c65a68d000915223da5fa2c2e173325d5a260a005101616023cf6@ec2-54-83-48-188.compute-1.amazonaws.com:5432/d1p72638a6lg0q";
+
+var sess;
+
+
 
 pg.connect(conString, function (err, con, done) {       
        
