@@ -1,0 +1,34 @@
+{
+  "name": "universityclinicbooking",
+  "version": "1.0.0",
+  "description": "App meant for to view booking queue and make a new booking",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Adex9ja/UniversityClinicBooking.git"
+  },
+  "keywords": [
+    "booking",
+    "app",
+    "university",
+    "clinic",
+    "app",
+    "node.js",
+    "app"
+  ],
+  "author": "Adeyemo Adeolu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Adex9ja/UniversityClinicBooking/issues"
+  },
+  "homepage": "https://github.com/Adex9ja/UniversityClinicBooking#readme",
+  "dependencies": {
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "pg": "^7.3.0"
+  }
+}
