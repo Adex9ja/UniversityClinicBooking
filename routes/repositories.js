@@ -45,7 +45,7 @@ exports.portal = function(req, res){
         if(err)
            console.log("Error Selecting : %s ",err );
         else{
-        	res.render('portal', {message : JSON.parse(JSON.stringify(rows.rows)) });
+        	res.render('portal', {data : JSON.parse(JSON.stringify(rows.rows)) });
         }        
                            
         });       
@@ -86,7 +86,7 @@ exports.search = function(req, res){
             if(err)
                 console.log("Error Selecting : %s ",err );
             else
-              res.render('portal', {message : JSON.parse(JSON.stringify(rows.rows)) });                         
+              res.render('portal', {data : JSON.parse(JSON.stringify(rows.rows)) });                         
          });
                  
     }); 
