@@ -12,7 +12,7 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="../css/master.css" />
+<link rel="stylesheet" type="text/css" href="css/master.css" />
 
 </head>
 
@@ -23,22 +23,14 @@
 ============================== -->   
 <div class="top-bar" id="top-bar">
     <div class="container">
-        <div class="row">		
-			
+        <div class="row">				
 			
             <!-- TOP BAR RIGHT -->
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pull-right">
-                <div class="top-bar-social">
-                    <a href="#"><i class="fa fa-facebook"></i></a> 
-                    <a href="#"><i class="fa fa-google-plus"></i></a> 
-                    <a href="#"><i class="fa fa-twitter"></i></a> 
-                    <a href="#"><i class="fa fa-skype"></i></a> 
-                </div>
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pull-right">               
                 <div class="top-bar-mail">
-                    <i class="fa fa-envelope"></i> <a href="#">info@universityclinic.com</a>
+                    <i class="fa fa-user"></i> <a href="/logout">Logout</a>
                 </div>
 			</div>
-
 			
 		</div>
 	</div>
@@ -59,7 +51,7 @@
 			<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
                 <div class="header-logo">
                     <a href="#">
-                        <span class="bold600 color-child-6">UNIVERSITY</span><span class="color-child-5">CLINIC</span>
+                        <span class="bold700 color-child-6">UNIVERSITY  </span><span class="color-child-5">CLINIC</span>
                     </a>
                 </div>
 			</div>
@@ -99,14 +91,11 @@
                     <div class="mobile-bar">
                         <div class="show-menu" id="show-menu">
                             <i class="fa fa-bars"></i>
-                        </div>
-                        <div class="color-sw-open-1" id="color-sw-open-1">
-                            <i class="fa fa-gear"></i>
-                        </div>
+                        </div>                       
                     </div>
                 </div>
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="/">Home</a></li>                    
+                    <li class="active"><a href="/portal">Home</a></li>                    
                 </ul>
             </div>
 		</div>
@@ -127,7 +116,7 @@
             <form method="post" action="/search"> 
              <div class="row">
                         <div class="col-md-5 col-xs-10 col-xs-offset-1 booking-form-item search">
-                            <input type="text" name="name" id="name" data-validation="required" placeholder="Search by Card No / Reference No" />
+                            <input type="text" name="name" id="search_term" data-validation="required" placeholder="Search by Card No / Reference No" />
                         </div>
                         <div style="margin-top: 8px" class="col-md-2 col-md-offset-0 col-xs-10 col-xs-offset-1 booking-form-item">
                             <input type="submit" name="submit" class="btn btn-primary" value="Search" />
@@ -150,7 +139,25 @@
                                 </tr>
                             </thead>
                             <tbody id="students">                               
+                                 <% if(data.length){                                 
+                                     for(var i = 0;i < data.length;i++) { %>                 
+                                    <tr>
+                                        <td><%=data[i].verification_code%></td>
+                                        <td><%=data[i].card_no%></td>
+                                        <td><%=data[i].phone_no%></td>
+                                        <td><%=data[i].arrival_time%></td>
+                                        <td>
+                                            <a class="header-button" href="/attended?ref=<%=data[i].verification_code%>">Attended To</a>                    
+                                        </td>
+                                    </tr>
+                                <% }
                                 
+                                 }else{ %>
+                                     <tr>
+                                        <td colspan="3">No user</td>
+                                     </tr>
+                                <% } %>
+                
                             </tbody>
                         </table>            
             </div>
@@ -191,16 +198,16 @@
     
 
     
-<link rel="stylesheet" type="text/css" href="../css/responsive.css" />
+<link rel="stylesheet" type="text/css" href="css/responsive.css" />
     
 <!-- =========================
      SCRIPTS   
 ============================== -->	
 <!-- JQUERY -->
-<script src="../js/jquery-2.2.0.min.js"></script>
+<script src="js/jquery-2.2.0.min.js"></script>
 
 <!-- BOOTSTRAP -->
-<script src="../js/bootstrap.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 
 
 </body>
