@@ -1,14 +1,35 @@
-var pg = require('pg');
+var pgcon = require('pg');
 var path = require('path');
 var session = require('express-session');
+var pg = new pgcon.Pool();
 var sess;
 
 var conString = "postgres://iegknwvdcghvhk:1af24d4dab8c65a68d000915223da5fa2c2e173325d5a260a005101616023cf6@ec2-54-83-48-188.compute-1.amazonaws.com:5432/d1p72638a6lg0q";
 
+pg.connect(conString, function (err, con, done) {       
+       
+     con.query(
+      "CREATE TABLE IF NOT EXISTS student (" +
+      " id serial primary key, " +
+      " verification_code VARCHAR (50) NOT NULL," + 
+      " card_no VARCHAR (50) NOT NULL, " +
+      " phone_no VARCHAR (50) NOT NULL, " +
+      " attended VARCHAR int, " +
+      " arrival_time TIMESTAMP )"  ,function(err,rows)     {            
+       
+            if(err)
+              console.log('Error occur creating table' + err);
+            else
+              console.log('Table created successfully');
+                           
+        });       
+    });
+
+
 exports.index = function(req, res){
 	sess = req.session;
 	if(sess.username) 
-		redirect('portal')
+		  res.redirect('portal')
 	else		
     	res.render('index', {message : req.message == null ? "" : req.message });
 };
