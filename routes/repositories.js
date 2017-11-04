@@ -16,7 +16,7 @@ pg.connect(conString, function (err, con, done) {
       " verification_code VARCHAR (50) NOT NULL," + 
       " card_no VARCHAR (50) NOT NULL, " +
       " phone_no VARCHAR (50) NOT NULL, " +
-      " attended VARCHAR int, " +
+      " attended integer, " +
       " arrival_time TIMESTAMP )"  ,function(err,rows)     {            
        
             if(err)
@@ -40,7 +40,7 @@ exports.portal = function(req, res){
 	if(sess.username) {
 
 	pg.connect(conString, function (err, con, done) {       
-     con.query('SELECT * FROM student WHERE attended = 0 &&  arrival_time >= now()',function(err,rows)     {
+     con.query('SELECT * FROM student WHERE attended = 0 and  arrival_time >= now()',function(err,rows)     {
         console.log(rows);            
         if(err)
            console.log("Error Selecting : %s ",err );
@@ -80,7 +80,7 @@ exports.search = function(req, res){
   var id = req.body.search_term; 
   
   pg.connect(conString, function (err, con, done) {
-    var sql = 'SELECT * FROM student WHERE attended = 0 &&  arrival_time >= now() && verification_code like %'+ id + '% or card_no like &' + id + '& ';
+    var sql = 'SELECT * FROM student WHERE attended = 0 and  arrival_time >= now() and verification_code like %'+ id + '% or card_no like &' + id + '& ';
      con.query(sql,function(err,rows)
         {            
             if(err)
@@ -124,7 +124,7 @@ exports.queue = function(req, res){
   var id = req.body.id; 
   
   pg.connect(conString, function (err, con, done) {
-    var sql = 'SELECT * FROM student WHERE attended = 0 &&  arrival_time >= now()';
+    var sql = 'SELECT * FROM student WHERE attended = 0 and  arrival_time >= now()';
      con.query(sql,function(err,rows)
       {            
           if (err){
@@ -164,7 +164,7 @@ exports.searchbooking = function(req, res){
   var id = req.body.id; 
   
   pg.connect(conString, function (err, con, done) {
-    var sql = 'SELECT * FROM student WHERE attended = 0 &&  arrival_time >= now() && verification_code like %'+ id + '% or card_no like &' + id + '& ';
+    var sql = 'SELECT * FROM student WHERE attended = 0 and  arrival_time >= now() and verification_code like %'+ id + '% or card_no like &' + id + '& ';
      con.query(sql,function(err,rows)
      {            
             if (err){
