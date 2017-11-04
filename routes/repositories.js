@@ -80,7 +80,7 @@ exports.search = function(req, res){
   var id = req.body.search_term; 
   
   pg.connect(conString, function (err, con, done) {
-    var sql = 'SELECT * FROM student WHERE attended = 0 and  arrival_time >= now() and verification_code like %'+ id + '% or card_no like &' + id + '& ';
+    var sql = "SELECT * FROM student WHERE attended = 0 and  arrival_time >= now() and verification_code like '%"+ id + "%' or card_no like '%" + id + "%'";
      con.query(sql,function(err,rows)
         {            
             if(err)
@@ -164,7 +164,7 @@ exports.searchbooking = function(req, res){
   var id = req.body.id; 
   
   pg.connect(conString, function (err, con, done) {
-    var sql = 'SELECT * FROM student WHERE attended = 0 and  arrival_time >= now() and verification_code like %'+ id + '% or card_no like &' + id + '& ';
+    var sql = "SELECT * FROM student WHERE attended = 0 and  arrival_time >= now() and verification_code like '%"+ id + "%' or card_no like '%" + id + "%'";
      con.query(sql,function(err,rows)
      {            
             if (err){
